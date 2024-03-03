@@ -17,6 +17,7 @@ struct MultipleChoice: View {
   
     @State var solution = 0.0
     
+    @Environment(\.presentationMode) var presentationMode
     
     @State var numberOfWins = UserDefaults.standard.integer(forKey: "numberOfWins")
     @State var numberOfLosses = UserDefaults.standard.integer(forKey: "numberOfLosses")
@@ -296,8 +297,28 @@ struct MultipleChoice: View {
                 }
                 
                 Spacer()
-                
+                Spacer()
+                Spacer()
+                Spacer()
+                Button(action: {
+                                    // Dismiss the current view and navigate back to UserMenu
+                                    presentationMode.wrappedValue.dismiss()
+                                }) {
+                                    Text("Back to Menu")
+                                        .font(.system(size: 15, weight: .bold))
+                                        .frame(width: 130, height: 35)
+                                        .foregroundColor(.black)
+                                        
+                                        
+                                        .background(Color.white)
+                                        .cornerRadius(10)
+                                        
+                                        
+                                }
+                                
             }
+            
+            
             
             
           

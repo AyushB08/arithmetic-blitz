@@ -24,6 +24,8 @@ struct UserInput: View {
     @State var submissionAlertCorrect = false;
     @State var submissionAlertWrong = false;
     
+    @Environment(\.presentationMode) var presentationMode
+    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     
@@ -189,7 +191,26 @@ struct UserInput: View {
                 }
                 
                 
+             
                 Spacer()
+                Spacer()
+                Spacer()
+                Spacer()
+                Button(action: {
+                                    // Dismiss the current view and navigate back to UserMenu
+                                    presentationMode.wrappedValue.dismiss()
+                                }) {
+                                    Text("Back to Menu")
+                                        .font(.system(size: 15, weight: .bold))
+                                        .frame(width: 130, height: 35)
+                                        .foregroundColor(.black)
+                                        
+                                        
+                                        .background(Color.white)
+                                        .cornerRadius(10)
+                                        
+                                        
+                                }
             }
             
             

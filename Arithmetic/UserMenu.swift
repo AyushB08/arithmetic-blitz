@@ -24,6 +24,8 @@ struct UserMenu: View {
                 Color.black
                     .ignoresSafeArea()
                 
+                
+                
                 VStack(alignment: .center) {
                     Text("Arithmetic Practice")
                         .font(.system(size: 35, weight: .bold))
@@ -40,8 +42,8 @@ struct UserMenu: View {
                                 .font(.system(size: 20, weight: .bold))
                                 .frame(width: 100) // Fixed width for the label
                             Picker(selection: $selectedOperation, label: Text("Select an option")) {
-                                ForEach(0 ..< operations.count) {
-                                    Text(self.operations[$0])
+                                ForEach(0 ..< operations.count, id: \.self) { index in
+                                    Text(self.operations[index])
                                 }
                             }
                             .pickerStyle(MenuPickerStyle())
@@ -53,8 +55,8 @@ struct UserMenu: View {
                                 .font(.system(size: 20, weight: .bold))
                                 .frame(width: 100)
                             Picker(selection: $selectedDigits, label: Text("Select an option")) {
-                                ForEach(0 ..< digits.count) {
-                                    Text(self.digits[$0])
+                                ForEach(0 ..< digits.count, id: \.self) { index in
+                                    Text(self.digits[index])
                                 }
                             }
                             .pickerStyle(MenuPickerStyle())
@@ -66,8 +68,8 @@ struct UserMenu: View {
                                 .font(.system(size: 20, weight: .bold))
                                 .frame(width: 100)
                             Picker(selection: $selectedMode, label: Text("Select an option")) {
-                                ForEach(0 ..< mode.count) {
-                                    Text(self.mode[$0])
+                                ForEach(0 ..< mode.count, id: \.self) { index in
+                                    Text(self.mode[index])
                                 }
                             }
                             .pickerStyle(MenuPickerStyle())
@@ -80,8 +82,8 @@ struct UserMenu: View {
                                 .font(.system(size: 20, weight: .bold))
                                 .frame(width: 100)
                             Picker(selection: $selectedTime, label: Text("Select an option")) {
-                                ForEach(0 ..< timer.count) {
-                                    Text(self.timer[$0])
+                                ForEach(0 ..< timer.count, id: \.self) { index in
+                                    Text(self.timer[index])
                                 }
                             }
                             .pickerStyle(MenuPickerStyle())
@@ -119,16 +121,25 @@ struct UserMenu: View {
                             .padding()
                     }
                     
-                   
+                    .fullScreenCover(isPresented: $multipleChoiceSwitch) {
+                                        MultipleChoice(operation: operations[selectedOperation],
+                                                       digits: digits[selectedDigits],
+                                                       time: timer[selectedTime])
+                                    }
                     
-                    NavigationLink(destination: MultipleChoice(operation: operations[selectedOperation], digits: digits[selectedDigits], time: timer[selectedTime]), isActive: $multipleChoiceSwitch) {
-                            EmptyView()
-                    }
-                   
-                    NavigationLink(destination: UserInput(operation: operations[selectedOperation], digits: digits[selectedDigits], time: timer[selectedTime]), isActive: $userInputSwitch) {
-                        EmptyView()
+                    .fullScreenCover(isPresented: $userInputSwitch) {
+                                        UserInput(operation: operations[selectedOperation],
+                                                       digits: digits[selectedDigits],
+                                                       time: timer[selectedTime])
+                                    }
+                
+
+                     
                     
-                    }
+                    
+
+
+
                 }
             }
             .navigationBarHidden(true)
