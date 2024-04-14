@@ -6,7 +6,7 @@ Welcome to Arithmetic Blitz, an app where you can practice your arithmetic skill
 This app was built using the SwiftUI Framework on Xcode. Additionally, this app has been submitted to the App Store but has not been reviewed yet.
 
 ## Demo Video
-https://youtu.be/uqxyRAXQREg?si=64wdCHEGSCgsqYdQ
+[Demo Video](https://youtu.be/uqxyRAXQREg?si=64wdCHEGSCgsqYdQ)
 
 ## Installation
 1. Clone the repository to your local machine using Git. Open your terminal and run: git clone https://github.com/AyushB08/arithmetic-blitz
